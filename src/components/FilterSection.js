@@ -1,10 +1,11 @@
 import React from 'react'
 import styled from 'styled-components';
 import { useFilterContext } from '../context/filter_context';
+import FormatPrice from "../Helper/FormatPrice";
 
-
+ 
 const FilterSection = () => {
-   const {filters:{text,category},updateFilterValue,all_products}=useFilterContext();
+   const {filters:{text,category,price,maxPrice,minPrice},updateFilterValue,all_products}=useFilterContext();
 
 
 
@@ -38,6 +39,14 @@ const FilterSection = () => {
         }
       </div>
     </div>
+
+    <div className="filter-price">
+    <h3>Price</h3>
+      <p><FormatPrice price={price}/></p>
+      <input type="range" name="price" min={minPrice} max={maxPrice} value={price} onChange={updateFilterValue} />
+    </div>
+
+
     </Wrapper>
   )
 }

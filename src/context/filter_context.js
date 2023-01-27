@@ -13,11 +13,12 @@ const initialState={
     sorting_value:"lowest",
     filters:{
         text:"",
-        catehory:""
+        category:"",
+        maxPrice: 0,
+        price: 0,
+        minPrice: 0,
     }
-
 }
-
 export const FilterContextProvider=({children})=>{
     const {products}=useProductContext(); 
     const [state, dispatch] = useReducer(reducer, initialState);
@@ -35,10 +36,6 @@ export const FilterContextProvider=({children})=>{
     useEffect(() => {
         dispatch({type:"LOAD_FILTER_PRODUCTS",payload:products});
     }, [products]);
-
-
-
-
     useEffect(() => {
       dispatch({type:"SORTING_PRODUCTS",payload:products});
     },[state.sorting_value])
